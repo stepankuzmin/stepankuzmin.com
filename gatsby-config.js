@@ -48,9 +48,12 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-yandex-metrika`,
       options: {
-        //trackingId: `ADD YOUR TRACKING ID HERE`,
+        trackingId: '51562388',
+        version: 2,
+        webvisor: true,
+        trackHash: true,
       },
     },
     `gatsby-plugin-feed`,
