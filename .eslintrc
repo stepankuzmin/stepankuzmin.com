@@ -1,0 +1,24 @@
+{
+  "parser": "babel-eslint",
+  "extends": ["airbnb", "prettier"],
+  "plugins": ["import", "react"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "__PATH_PREFIX__": true
+  },
+  "rules": {
+    "arrow-parens": ["warn", "as-needed", { "requireForBlockBody": true }],
+    "comma-dangle": ["error", "never"],
+    "function-paren-newline": ["error", "consistent"],
+    "jsx-quotes": ["error", "prefer-single"],
+    "max-len": ["error", { "code": 80, "ignoreUrls": true }],
+    "no-return-assign": "warn",
+    "quotes": ["error", "single"],
+    "react/prop-types": [1, { "skipUndeclared": true }],
+    "react/jsx-filename-extension": [1, { "extensions": [".js"] }],
+    "react/jsx-no-bind": "error"
+  }
+}
