@@ -3,7 +3,7 @@ title: How to be a STAR engineer
 date: '2018-12-31'
 ---
 
-A summary of "How to be a STAR engineer" by Robert E. Kelley.
+This is a summary of "[How to be a STAR engineer](https://vlsicad.ucsd.edu/Research/Advice/star_engineer.pdf)" by Robert E. Kelley. It’s a roundup of the research committed at Xerox PARC **more than 30 years ago** with the goal to figure out what really makes software engineers **effective** and **top-performing**.
 
 ## The path to stardom
 
