@@ -18,10 +18,10 @@ export const pageQuery = graphql`
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
-      excerpt(pruneLength: 160)
       html
       frontmatter {
         title
+        description
         date(formatString: "MMMM DD, YYYY")
       }
     }
@@ -37,7 +37,10 @@ const BlogPostTemplate = (props) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title={post.frontmatter.title} description={post.excerpt} />
+      <SEO
+        title={post.frontmatter.title}
+        description={post.frontmatter.description}
+      />
       <h1>{post.frontmatter.title}</h1>
       <p
         style={{

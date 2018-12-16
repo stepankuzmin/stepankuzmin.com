@@ -6,7 +6,9 @@ import { Link, graphql } from 'gatsby';
 import Bio from '../components/bio';
 import Layout from '../components/Layout';
 import SEO from '../components/seo';
+
 import { rhythm } from '../utils/typography';
+import { formatReadingTime } from '../utils/helpers';
 
 export const pageQuery = graphql`
   query {
@@ -22,9 +24,11 @@ export const pageQuery = graphql`
           fields {
             slug
           }
+          timeToRead
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
+            description
           }
         }
       }
@@ -46,6 +50,7 @@ const BlogIndex = (props) => {
       <Bio />
       {posts.map(({ node }) => {
         const title = node.frontmatter.title || node.fields.slug;
+
         return (
           <div key={node.fields.slug}>
             <h3
@@ -57,8 +62,11 @@ const BlogIndex = (props) => {
                 {title}
               </Link>
             </h3>
-            <small>{node.frontmatter.date}</small>
-            <p dangerouslySetInnerHTML={{ __html: node.excerpt }} />
+            <small>
+              {node.frontmatter.date}
+              {` • ${formatReadingTime(node.timeToRead)}`}
+            </small>
+            <p>{node.frontmatter.description}</p>
           </div>
         );
       })}
