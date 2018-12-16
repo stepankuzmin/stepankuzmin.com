@@ -77,13 +77,6 @@ module.exports = {
         pathToConfigModule: 'src/utils/typography'
       }
     },
-    'gatsby-plugin-styled-components',
-    {
-      resolve: '@jamesdanylik/gatsby-source-goodreads',
-      options: {
-        key: 'mHUM7ajJ88suGVLyB4g1A',
-        id: '4968080'
-      }
-    }
+    'gatsby-plugin-styled-components'
   ]
 };
