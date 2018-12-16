@@ -5,7 +5,7 @@ import { graphql } from 'gatsby';
 
 import Bio from '../components/bio';
 import Separator from '../components/Separator';
-import Layout from '../components/layout';
+import Layout from '../components/Layout';
 import Book from '../components/Book';
 import SEO from '../components/seo';
 

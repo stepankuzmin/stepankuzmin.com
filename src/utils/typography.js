@@ -19,3 +19,16 @@ if (process.env.NODE_ENV !== 'production') {
 export default typography;
 
 export const { rhythm, scale } = typography;
+
+export const scaleIntoCSS = (...args) => {
+  const style = scale(args);
+  return Object.keys(style)
+    .map((propName) => {
+      const cssPropName = propName
+        .replace(/([a-z])([A-Z])/, '$1-$2')
+        .toLowerCase();
+
+      return `${cssPropName}: ${style[propName]}`;
+    })
+    .join(';');
+};
