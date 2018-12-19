@@ -4,11 +4,11 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 
 import Bio from '../components/bio';
+import Footer from '../components/Footer';
 import Layout from '../components/Layout';
 import SEO from '../components/seo';
 
 import { rhythm } from '../utils/typography';
-import { formatReadingTime } from '../utils/helpers';
 
 export const pageQuery = graphql`
   query {
@@ -63,13 +63,13 @@ const BlogIndex = (props) => {
               </Link>
             </h3>
             <small>
-              {node.frontmatter.date}
-              {` • ${formatReadingTime(node.timeToRead)}`}
+              {`${node.frontmatter.date} • ${node.timeToRead} min read`}
             </small>
             <p>{node.frontmatter.description}</p>
           </div>
         );
       })}
+      <Footer />
     </Layout>
   );
 };

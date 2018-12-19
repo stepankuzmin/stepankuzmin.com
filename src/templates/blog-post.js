@@ -19,6 +19,7 @@ export const pageQuery = graphql`
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       html
+      timeToRead
       frontmatter {
         title
         description
@@ -50,7 +51,7 @@ const BlogPostTemplate = (props) => {
           marginTop: rhythm(-1)
         }}
       >
-        {post.frontmatter.date}
+        {`${post.frontmatter.date} • ${post.timeToRead} min read`}
       </p>
       <div dangerouslySetInnerHTML={{ __html: post.html }} />
       <hr
