@@ -67,6 +67,7 @@ module.exports = {
         trackHash: true
       }
     },
+    'gatsby-plugin-eslint',
     'gatsby-plugin-feed',
     'gatsby-plugin-offline',
     'gatsby-plugin-react-helmet',
