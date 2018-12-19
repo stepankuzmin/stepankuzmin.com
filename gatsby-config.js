@@ -45,12 +45,6 @@ module.exports = {
         ]
       }
     },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
-    'gatsby-plugin-feed',
-    'gatsby-plugin-offline',
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-plugin-typography',
       options: {
@@ -73,6 +67,13 @@ module.exports = {
         trackHash: true
       }
     },
+    'gatsby-plugin-feed',
+    'gatsby-plugin-offline',
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sharp',
+    'gatsby-plugin-styled-components',
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-netlify-cache',
     'gatsby-plugin-netlify'
   ]
 };
