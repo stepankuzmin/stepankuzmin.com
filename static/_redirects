@@ -1,0 +1,6 @@
+# Redirect domain aliases to primary domain
+https://stepan.tech/* https://stepankuzmin.com/:splat 301!
+https://www.stepan.tech/* https://stepankuzmin.com/:splat 301!
+
+# Optional: Redirect default Netlify subdomain to primary domain
+https://stepan.netlify.com/* https://stepankuzmin.com/:splat 301!
