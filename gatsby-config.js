@@ -1,9 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: 'stepan.tech',
+    title: 'stepankuzmin.com',
     author: 'Stepan Kuzmin',
     description: 'A starter blog demonstrating what Gatsby can do.',
-    siteUrl: 'https://stepan.netlify.com/',
+    siteUrl: 'https://stepankuzmin.com/',
     social: {
       twitter: 'stepankuzmin'
     }
