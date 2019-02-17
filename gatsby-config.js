@@ -1,8 +1,11 @@
+/* eslint-disable max-len */
+
 module.exports = {
   siteMetadata: {
     title: 'stepankuzmin.com',
     author: 'Stepan Kuzmin',
-    description: 'A starter blog demonstrating what Gatsby can do.',
+    description:
+      'Stepan is a software engineer and GIS specialist with 10 years of experience in solving problems with technologies.',
     siteUrl: 'https://stepankuzmin.com/',
     social: {
       twitter: 'stepankuzmin'
