@@ -48,7 +48,10 @@ function Bio() {
                 borderRadius: '100%'
               }}
             />
-            <p>by Stepan Kuzmin</p>
+            <p>
+              Stepan is a software engineer and GIS specialist with 10 years of
+              experience in solving problems with technologies.
+            </p>
           </div>
         );
       }}
