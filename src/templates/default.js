@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 
 import React from 'react';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import Bio from '../components/bio';
 import Layout from '../components/Layout';
@@ -9,7 +9,7 @@ import SEO from '../components/seo';
 import { rhythm, scale } from '../utils/typography';
 
 export const pageQuery = graphql`
-  query BlogPostBySlug($slug: String!) {
+  query PageBySlug($slug: String!) {
     site {
       siteMetadata {
         title
@@ -29,12 +29,11 @@ export const pageQuery = graphql`
   }
 `;
 
-const BlogPostTemplate = (props) => {
-  const { data, location, pageContext } = props;
+const DefaultTemplate = (props) => {
+  const { data, location } = props;
 
   const post = data.markdownRemark;
   const siteTitle = data.site.siteMetadata.title;
-  const { previous, next } = pageContext;
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -60,37 +59,8 @@ const BlogPostTemplate = (props) => {
         }}
       />
       <Bio />
-
-      <ul
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'space-between',
-          listStyle: 'none',
-          padding: 0
-        }}
-      >
-        <li>
-          {previous && (
-            <Link to={previous.fields.slug} rel='prev'>
-              ← 
-              {' '}
-              {previous.frontmatter.title}
-            </Link>
-          )}
-        </li>
-        <li>
-          {next && (
-            <Link to={next.fields.slug} rel='next'>
-              {next.frontmatter.title}
-              {' '}
-→
-            </Link>
-          )}
-        </li>
-      </ul>
     </Layout>
   );
 };
 
-export default BlogPostTemplate;
+export default DefaultTemplate;

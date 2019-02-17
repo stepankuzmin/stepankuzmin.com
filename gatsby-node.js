@@ -1,58 +1,66 @@
+const fs = require('fs');
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 
-exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions;
-
-  return new Promise((resolve, reject) => {
-    const blogPost = path.resolve('./src/templates/blog-post.js');
-    resolve(
-      graphql(
-        `
-          {
-            allMarkdownRemark(
-              sort: { fields: [frontmatter___date], order: DESC }
-              limit: 1000
-            ) {
-              edges {
-                node {
-                  fields {
-                    slug
-                  }
-                  frontmatter {
-                    title
-                  }
-                }
-              }
-            }
+const pagesQuery = `
+  {
+    allMarkdownRemark(
+      sort: {fields: [frontmatter___date], order: DESC}
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+            template
           }
-        `
-      ).then((result) => {
-        if (result.errors) {
-          // console.log(result.errors);
-          reject(result.errors);
+          frontmatter {
+            title
+          }
         }
+      }
+    }
+  }
+`;
 
-        // Create blog posts pages.
-        const posts = result.data.allMarkdownRemark.edges;
+const templatesPath = './src/templates/';
+const templates = fs.readdirSync(templatesPath).reduce((acc, fileName) => {
+  const templatePath = path.resolve(path.join(templatesPath, fileName));
+  const templateName = path.parse(templatePath).name;
 
-        posts.forEach((post, index) => {
-          const previous =
-            index === posts.length - 1 ? null : posts[index + 1].node;
-          const next = index === 0 ? null : posts[index - 1].node;
+  acc[templateName] = templatePath;
+  return acc;
+}, {});
 
-          createPage({
-            path: post.node.fields.slug,
-            component: blogPost,
-            context: {
-              slug: post.node.fields.slug,
-              previous,
-              next
-            }
-          });
-        });
-      })
-    );
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage, createRedirect } = actions;
+
+  const result = await graphql(pagesQuery);
+  if (result.errors) {
+    throw result.errors;
+  }
+
+  const pages = result.data.allMarkdownRemark.edges;
+  pages.forEach((page) => {
+    const { slug, template } = page.node.fields;
+    const templateComponent = templates[template];
+
+    if (!templateComponent) {
+      throw new Error(`Couldn't find template ${template} for ${slug}`);
+    }
+
+    createPage({
+      path: slug,
+      component: templateComponent,
+      context: {
+        slug
+      }
+    });
+
+    createRedirect({
+      fromPath: path.join('/all', slug),
+      toPath: slug,
+      isPermanent: true
+    });
   });
 };
 
@@ -65,6 +73,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       name: 'slug',
       node,
       value
+    });
+
+    // add `template` frontmatter field to node
+    createNodeField({
+      name: 'template',
+      node,
+      value: node.frontmatter.template
     });
   }
 };
